@@ -3,7 +3,7 @@ name: project cicd flow
 on:
   push:
     branches: 
-      - 'feature/**'
+      - feature
       - master
 jobs:
   build:
