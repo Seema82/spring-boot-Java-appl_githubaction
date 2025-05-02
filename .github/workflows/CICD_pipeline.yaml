@@ -32,4 +32,3 @@ jobs:
           push: true
           tags: ${{secrets.DOCKERHUB_USERNAME}}/springboot-java-image:${{github.ref_name}}
           #tags: seema85/springboot-java-image:latest
-           
