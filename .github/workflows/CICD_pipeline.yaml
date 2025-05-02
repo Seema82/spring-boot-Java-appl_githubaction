@@ -37,7 +37,7 @@ jobs:
         git config --global user.email "seemakulkarni2611@gmail.com"
         git fetch --all
         git checkout master
-        git merge ${{ github.ref }} --no-ff -m "Merge feature branch ${{ github.ref }} into master"
+        git merge ${{ github.ref }} --no-ff -m "Merge feature branch ${{ github.ref }} into master" --allow-unrelated-histories
         git push origin master 
     env:
       GITHUB_TOKEN: ${{ secrets.TOKEN }}
