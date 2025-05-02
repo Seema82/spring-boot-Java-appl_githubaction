@@ -31,15 +31,15 @@ jobs:
           push: true
           tags: seema85/springboot-java-image:latest
     - name: Merge to master
-      if: success()
-      run: |
-         git config --global user.name 'seema82' 
-         git config --global user.email 'seemakulkarni2611@gmail.com' 
-         git checkout master 
-         git merge ${{ github.ref }} --no-ff -m "Merge feature branch ${{ github.ref }} into master" 
-         git push origin master 
-      env:
-         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      if: success()
+      run: |
+        git config --global user.name "seema82"
+        git config --global user.email "seemakulkarni2611@gmail.com"
+        git checkout master
+        git merge ${{ github.ref }} --no-ff -m "Merge feature branch ${{ github.ref }} into master"
+        git push origin master 
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
           
