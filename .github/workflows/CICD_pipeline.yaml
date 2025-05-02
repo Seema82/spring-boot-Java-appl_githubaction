@@ -2,10 +2,8 @@ name: project cicd flow
 
 on:
   push:
-    branches: [ feature ]
-  pull_request:
-    branches: [ master ]
-
+    branches: 
+      - feature 
 jobs:
   build:
 
@@ -32,15 +30,4 @@ jobs:
           context: .
           push: true
           tags: seema85/springboot-java-image:latest
-    - name: Merge to master
-      if: success()
-      run: |
-        git config --global user.name "Seema82"
-        git config --global user.email "seemakulkarni2611@gmail.com"
-        git fetch --all
-        git checkout master
-        git merge origin/feature/${{ github.head_ref }} --no-ff -m "Merge feature branch ${{ github.head_ref }} into master" --allow-unrelated-histories
-        git push origin master 
-    env:
-      GITHUB_TOKEN: ${{ secrets.TOKEN }}
-     
+   
