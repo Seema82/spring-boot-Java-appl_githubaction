@@ -40,7 +40,7 @@ jobs:
         git merge ${{ github.ref }} --no-ff -m "Merge feature branch ${{ github.ref }} into master"
         git push origin master 
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
 
           
