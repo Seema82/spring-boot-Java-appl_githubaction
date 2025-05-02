@@ -3,7 +3,9 @@ name: project cicd flow
 on:
   push:
     branches: [ feature ]
-  
+  pull_request:
+    branches: [ master ]
+
 jobs:
   build:
 
@@ -42,5 +44,3 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
-
-          
