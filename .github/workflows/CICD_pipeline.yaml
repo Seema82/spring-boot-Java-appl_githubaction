@@ -29,5 +29,7 @@ jobs:
       with:
           context: .
           push: true
-          tags: seema85/springboot-java-image:latest
+          tags: ${{secrets.DOCKERHUB_USERNAME}}/springboot-java-image:${{github.ref_name}}
+          #tags: seema85/springboot-java-image:latest
+          
    
