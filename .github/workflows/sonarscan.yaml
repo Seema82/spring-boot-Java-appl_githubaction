@@ -1,7 +1,9 @@
 name: project cicd flow
 
 on:
-  workflow_dispatch:
+  push:
+    branches: 
+      - Featurescan
   
 jobs:
   build:
