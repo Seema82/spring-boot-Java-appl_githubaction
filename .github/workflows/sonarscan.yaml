@@ -1,16 +1,8 @@
 name: project cicd flow
 
 on:
-  push:
-    branches: 
-      - feature
-      - master
-      - Featurescan
-  pull_request:
-    types: [opened, synchronize, reopened]
-    
-    branches:
-      - master
+  workflow_dispatch:
+  
 jobs:
   build:
 
