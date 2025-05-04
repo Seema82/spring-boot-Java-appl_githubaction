@@ -38,7 +38,8 @@ jobs:
     - name: Build and analyze
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+      run: |
+        mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
         -Dsonar.projectKey=seema82_testsecurity \
         -Dsonar.organization=seema82 \
         -Dsonar.host.url=https://sonarcloud.io \
