@@ -4,6 +4,7 @@ on:
   push:
     branches: 
       - Featurescan
+  workflow_dispatch:
   
 jobs:
   build:
