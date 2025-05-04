@@ -23,6 +23,7 @@ jobs:
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
             -Dsonar.organization=${{ secrets.SONAR_ORG }}
             -Dsonar.branch.name=Featurescan
+            -Dsonar.newCode.referenceBranch=master
 
    
      
