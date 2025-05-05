@@ -1,4 +1,4 @@
-name: project cicd flow
+name: static code analysis
 permissions:
   contents: read
 
