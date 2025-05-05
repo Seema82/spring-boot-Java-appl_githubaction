@@ -10,6 +10,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      SONAR_HOST_URL: https://sonarcloud.io
+      SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+      SONAR_ORGANIZATION: ${{ secrets.SONAR_ORG }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
     steps:
     - uses: actions/checkout@v4
 
@@ -21,37 +27,25 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - name: Cache SonarQube packages
+    - name: Cache dependencies
       uses: actions/cache@v4
       with:
-        path: ~/.sonar/cache
-        key: ${{ runner.os }}-sonar
-        restore-keys: ${{ runner.os }}-sonar
+        path: |
+          ~/.sonar/cache
+          ~/.m2
+        key: ${{ runner.os }}-sonar-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-sonar-m2
 
-    - name: Cache Maven packages
-      uses: actions/cache@v4
-      with:
-        path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-        restore-keys: ${{ runner.os }}-m2    
-    
     - name: Build and analyze
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
         mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-        -Dsonar.projectKey=seema82_testsecurity \
-        -Dsonar.organization=seema82 \
-        -Dsonar.host.url=https://sonarcloud.io \
+        -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }} \
+        -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} \
+        -Dsonar.host.url=${{ env.SONAR_HOST_URL }} \
+        -Dsonar.login=${{ env.SONAR_TOKEN }} \
         -Dsonar.java.binaries=target/classes
         
-    - name: Publish SonarQube results
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      uses: sonarsource/sonarqube-scan-action@v1.0.0
-      with:
-         github_token: ${{ secrets.TOKEN }}
-         
+             
 
 
       
