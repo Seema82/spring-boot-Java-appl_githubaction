@@ -9,6 +9,11 @@ on:
     branches: 
       - master
       - feature/*
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - master
+    
 
 jobs:
   build:
