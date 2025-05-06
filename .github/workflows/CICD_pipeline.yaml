@@ -1,3 +1,4 @@
+   
 name: CICD pipeline for springboot java application using job name
 
 permissions:
@@ -7,19 +8,20 @@ on:
   push:
     branches: 
       - feature
+      
       - feature/*
 
 jobs:
   compile:
     runs-on: ubuntu-latest
   
-    env:
-      SONAR_HOST_URL: https://sonarcloud.io
-      SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
-      SONAR_ORGANIZATION: ${{ secrets.SONAR_ORG }}
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+    # env:
+    #   SONAR_HOST_URL: https://sonarcloud.io
+    #   SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+    #   SONAR_ORGANIZATION: ${{ secrets.SONAR_ORG }}
+    #   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    #   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+    #   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
 
     steps:
     - uses: actions/checkout@v4
@@ -102,8 +104,3 @@ jobs:
         context: .
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/springboot-java-image:${{ github.ref_name }}
-          push: true
-          tags: ${{secrets.DOCKERHUB_USERNAME}}/springboot-java-image:${{github.ref_name}}
-          #tags: seema85/springboot-java-image:latest
-          
-   
