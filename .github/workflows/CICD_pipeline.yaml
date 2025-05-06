@@ -64,9 +64,14 @@ jobs:
         username: ${{ env.DOCKERHUB_USERNAME }}
         password: ${{ env.DOCKERHUB_TOKEN }}
 
+    - name: Sanitize branch name for Docker tag
+      env:
+        RAW_REF: ${{ github.ref_name }}
+      run: echo "TAG_NAME=${RAW_REF//\//-}" >> $GITHUB_ENV
+
     - name: Build and push Docker image
       uses: docker/build-push-action@v6
       with:
         context: .
         push: true
-        tags: ${{ env.DOCKERHUB_USERNAME }}/springboot-java-image:${{ github.ref_name }}
+        tags: ${{ env.DOCKERHUB_USERNAME }}/springboot-java-image:${{ env.TAG_NAME }}
