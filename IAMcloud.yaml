@@ -1,0 +1,27 @@
+Resources:
+
+  ContractorsGroup:
+    Type: AWS::IAM::Group
+    Properties:
+      GroupName: Contractors
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess
+        - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+        - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+
+  ContractorsUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: ContractorUser
+      Groups:
+        - !Ref ContractorsGroup
+
+ 
+Outputs:
+  UserName:
+    Description: IAM User Name
+    Value: !Ref ContractorsUser
+
+  GroupName:
+    Description: IAM Group Name
+    Value: !Ref ContractorsGroup
