@@ -1,4 +1,4 @@
-ame: CICD pipeline for springboot java application
+name: CICD pipeline for springboot java application
 
 permissions:
   contents: read
